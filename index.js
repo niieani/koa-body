@@ -107,6 +107,8 @@ function formy(ctx, opts) {
           files[field] = file;
         }
       });
+    if (typeof opts.onProgress === "function")
+      form.on('progress', opts.onProgress);
     form.parse(ctx.req);
   };
 }
