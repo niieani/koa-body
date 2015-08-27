@@ -95,6 +95,8 @@ function formy(ctx, opts) {
         } else {
           fields[field] = value;
         }
+        if (typeof opts.onField === "function")
+          opts.onField(form, field, value);
       })
       .on('file', function(field, file) {
         if (files[field]) {
