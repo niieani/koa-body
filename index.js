@@ -108,7 +108,9 @@ function formy(ctx, opts) {
         }
       });
     if (typeof opts.onProgress === "function")
-      form.on('progress', opts.onProgress);
+      form.on('progress', function(bytesReceived, bytesExpected) { opts.onProgress(form, bytesReceived, bytesExpected) });
+    if (typeof opts.onFileBegin === "function")
+      form.on('fileBegin', function(name, file) { opts.onFileBegin(form, name, file) });
     form.parse(ctx.req);
   };
 }
